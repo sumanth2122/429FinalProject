@@ -1,0 +1,15 @@
+---
+title: "Stat 419 Final Project"
+author: "Sumanth, Abby, Jett, Alex, Chris"
+format: html
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+dset <- read.csv("cincy_419.csv", sep=",", header=T)
+head(dset)
+```
