@@ -9,6 +9,13 @@ execute:
   message: false
 ---
 
+```{r packages}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
 ```{r data}
-cincy <- read.csv("cincy_419.csv", sep = ",", header = T)
+cincy <- read_csv(here("data", "cincy.csv")) |>
+  clean_names()
 ```
