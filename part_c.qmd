@@ -13,9 +13,22 @@ execute:
 library(tidyverse)
 library(here)
 library(janitor)
+library(knitr)
 ```
 
 ```{r data}
 cincy <- read_csv(here("data", "cincy.csv")) |>
   clean_names()
 ```
+
+## Discriminant and Classification Analysis
+
+### Correlated Quantitative Variables
+
+```{r}
+kable(cor(cincy |> select(-pricerank)))
+```
+
+### Discriminant Analysis
+
+### Classification Analysis
