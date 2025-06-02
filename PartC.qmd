@@ -9,7 +9,6 @@ execute:
   message: false
 ---
 
-```{r}
-dset <- read.csv("cincy_419.csv", sep=",", header=T)
-head(dset)
+```{r data}
+cincy <- read.csv("cincy_419.csv", sep = ",", header = T)
 ```
