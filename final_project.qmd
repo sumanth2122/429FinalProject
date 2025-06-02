@@ -1,0 +1,26 @@
+---
+title: "Final Project | STAT 419"
+author: "Sumanth, Abby, Jett, Alex, Chris"
+format: pdf
+editor: visual
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Introduction
+
+## Graphs and Summary Statistics
+
+## Discriminant and Classification Analysis
+
+### Correlated Quantitative Variables
+
+### Discriminant Analysis
+
+### Classification Analysis
+
+## Summary
+
+## R Code
