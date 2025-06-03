@@ -29,6 +29,12 @@ cincy <- read_csv(here("data", "cincy.csv")) |>
 kable(cor(cincy |> select(-pricerank)))
 ```
 
+```{r}
+plot(cincy[,2:7])
+```
+
+It appears that quality and area, along with bathroom and area have the highest correlations. These may be omitted from analysis.
+
 ### Discriminant Analysis
 
 ### Classification Analysis
