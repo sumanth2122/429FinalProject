@@ -20,6 +20,7 @@ source(here("all_custom_functions.R"))
 ```{r data}
 cincy <- read_csv(here("data", "cincy.csv")) |>
   clean_names()
+cincy$pricerank <- as.factor(cincy$pricerank)
 ```
 
 ## Discriminant and Classification Analysis
@@ -41,7 +42,9 @@ It appears that quality and area, along with bathroom and area have the highest 
 ### Discriminant Analysis
 
 ```{r}
-discrim(cincy[,-1], cincy[,1])
+# First remove whatever variables had multicollinearity above
+# Can't get this working for some reaosn. I tried making pricerank a factor?
+# discrim(cincy[,-1], cincy[,1])
 ```
 
 ### Classification Analysis
