@@ -14,6 +14,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(knitr)
+source(here("all_custom_functions.R"))
 ```
 
 ```{r data}
@@ -35,6 +36,12 @@ plot(cincy[,2:7])
 
 It appears that quality and area, along with bathroom and area have the highest correlations. These may be omitted from analysis.
 
+<!-- Flagged by Jett. Above needs better justification and should also cite the correlations -->
+
 ### Discriminant Analysis
+
+```{r}
+discrim(cincy[,-1], cincy[,1])
+```
 
 ### Classification Analysis
