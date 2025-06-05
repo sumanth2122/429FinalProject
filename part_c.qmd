@@ -10,8 +10,7 @@ execute:
 ---
 
 ```{r packages}
-#| echo: false
-
+# Echo TRUE for this whole file. The final document will be echo FALSE, then include code at the bottom (section E)
 library(tidyverse)
 library(here)
 library(janitor)
@@ -39,9 +38,7 @@ kable(cor(cincy |> select(-Pricerank)))
 plot(cincy[,2:7])
 ```
 
-It appears that quality and area, along with bathroom and area have the highest correlations. These may be omitted from analysis.
-
-<!-- Flagged by Jett. Above needs better justification and should also cite the correlations -->
+We will consider correlations above \|0.80\| to be strong. Provided that no correlations exceed this threshold, we will proceed with all six variables.
 
 ### Discriminant Analysis
 
