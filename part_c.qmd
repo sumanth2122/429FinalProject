@@ -9,7 +9,9 @@ execute:
   message: false
 ---
 
-```{r packages, echo=FALSE}
+```{r packages}
+#| echo: false
+
 library(tidyverse)
 library(here)
 library(janitor)
@@ -18,9 +20,11 @@ source(here("all_custom_functions.R"))
 ```
 
 ```{r data}
-cincy <- read_csv(here("data", "cincy.csv")) |> clean_names()
-cincy$pricerank <- as.factor(cincy$pricerank)
-
+cincy <- read_csv(here("data", "cincy.csv")) |>
+  rename(
+    Pricerank = PRICERANK,
+    Age = AGE
+  )
 ```
 
 ## Discriminant and Classification Analysis
@@ -28,7 +32,7 @@ cincy$pricerank <- as.factor(cincy$pricerank)
 ### Correlated Quantitative Variables
 
 ```{r}
-kable(cor(cincy |> select(-pricerank)))
+kable(cor(cincy |> select(-Pricerank)))
 ```
 
 ```{r}
@@ -43,7 +47,6 @@ It appears that quality and area, along with bathroom and area have the highest 
 
 ```{r}
 # First remove whatever variables had multicollinearity above
-# Can't get this working for some reaosn. I tried making pricerank a factor? 
 discrim(cincy[,-1], cincy$pricerank)
 ```
 
