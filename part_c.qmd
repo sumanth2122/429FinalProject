@@ -10,15 +10,20 @@ execute:
 ---
 
 ```{r packages}
+# Echo TRUE for this whole file. The final document will be echo FALSE, then include code at the bottom (section E)
 library(tidyverse)
 library(here)
 library(janitor)
 library(knitr)
+source(here("all_custom_functions.R"))
 ```
 
 ```{r data}
 cincy <- read_csv(here("data", "cincy.csv")) |>
-  clean_names()
+  rename(
+    Pricerank = PRICERANK,
+    Age = AGE
+  )
 ```
 
 ## Discriminant and Classification Analysis
@@ -26,9 +31,65 @@ cincy <- read_csv(here("data", "cincy.csv")) |>
 ### Correlated Quantitative Variables
 
 ```{r}
-kable(cor(cincy |> select(-pricerank)))
+kable(cor(cincy |> select(-Pricerank)))
 ```
 
+```{r}
+plot(cincy[,2:7])
+```
+
+We will consider correlations above \|0.80\| to be strong. Provided that no correlations exceed this threshold, we will proceed with all six variables.
+
 ### Discriminant Analysis
+
+```{r}
+discrim(cincy[,-1], cincy$Pricerank)$a.stand
+```
+
+$$
+Z_1 = 0.705(y_1) + 0.048(y_2) + 0.330(y_3) + 0.113(y_4) - 0.390(y_5) - 0.223(y_6)
+$$
+
+$$
+Z_2 = -0.546(y_1) + 0.436(y_2) + 0.086(y_3) - 0.010(y_4) - 0.385(y_5) + 0.070(y_6)
+$$
+
+```{r}
+kable(data.frame(Variable = c("y1", "y5", "y3", "y6", "y4", "y2"),
+                 Z1 = c(0.70478207,
+                        -0.38983060,
+                        0.33024101,
+                        -0.22310228,
+                        0.11313689,
+                        0.04815262)),
+      digits = 3,
+      col.names = c("Variable", "Z1"))
+
+kable(data.frame(Variable = c("y1", "y2", "y5", "y3", "y6", "y4"),
+                 Z2 = c(-0.54597681,
+                        0.43649046,
+                        -0.38524224,
+                        0.08065737,
+                        0.07040947,
+                        -0.01035619)),
+      digits = 3,
+      col.names = c("Variable", "Z2"))
+
+```
+
+The standardized coefficients are ranked above according to their variable contributions to group separation in the presence of all other variables.
+
+H0: $\pmb{\alpha_1} = \pmb{\alpha_2} = \pmb{0}$
+
+HA: At least one $\pmb{\alpha_i} \neq \pmb{0}$ for i = 1, 2
+
+```{r}
+test <- discr.sig(cincy[,-1], cincy$Pricerank)
+kable(test, digits = 3, col.names = c("Lambda",
+                                      "V",
+                                      "P-Values"))
+```
+
+<!--I might be getting these hypotheses mixed up with the wrong kind of test. Let's double check together on 6/5 in class. -JP-->
 
 ### Classification Analysis
