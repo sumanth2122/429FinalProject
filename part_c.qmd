@@ -91,6 +91,11 @@ kable(test, digits = 3, col.names = c("Lambda",
 ```
 
 <!--I might be getting these hypotheses mixed up with the wrong kind of test. Let's double check together on 6/5 in class. -JP-->
+```{r}
+cincy$Pricerank <- as.factor(cincy$Pricerank)
+discr.plot(cincy[, -1], cincy$Pricerank)
+```
+The plot of the first two linear discriminant functions shows that LD1 shows meaningful separation between the Pricerank groups. Group 1 (circles) and Group 3 (pluses) appear on opposite ends of the LD1 axis, indicating strong discrimination between lower and higher priced homes. Group 2 (triangles), however, overlaps with both groups, particularly along LD2. This suggests that while the first discriminant function captures most of the between group variation, the second function contributes less to distinguishing the groups. Overall, the functions separate the groups moderately well, but the separation isn’t perfect, especially between groups 2 and 3. 
 
 ### Classification Analysis
 
