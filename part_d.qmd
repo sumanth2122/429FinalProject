@@ -3,3 +3,12 @@ title: "part_d"
 format: html
 ---
 
+# Section D
+
+Our project analysed factors that affect the selling price of homes in 2002 in Cincinnati, Ohio, with each observation in our dataset representing a home. The homes are grouped into three categories of the the Pricerank variable, with homes sold for less than \$190,000 = "1", homes sold for between \$190,000 and \$285,000 = 2, and homes sold for more than \$285,000 = 3, with six explanatory variables to help with classifying a home by Pricerank.
+
+Before performing discriminant analysis, we checked for any strong correlations (i.e., $r \ge \pm 0.8$) between the explanatory variables. No pairs of explanatory variables yielded strong correlations, leading us to a discriminant analysis with two discriminant functions. The standardised discriminant functiion reveals area, number of bedrooms, number of bathrooms, and overall quality rating contribute the most to separating the groups in the second linear discriminant function. 
+
+Perfoming a classification for Pricerank based on the four previously mentioned variables yields an apparent correct classification rate of 0.77 and an apparent error rate of 0.23. These values indicate a reasonably strong ability to classify house Pricerank. by area, number of bedrooms, number of bathrooms, and overall quality rating. Most misclassifications occur between similar categories.
+
+Generally speaking, our team did not encounter highly suprising results when grouping houses on Pricerank. However, one variable our team felt would be useful for separation would be location score because homes vary by neighbourhood. This location score would be an integer that takes into consideration school district quality, crime rate, proximity to downtown, etc. Homes with similar features can vary significantly in price when taking into consideration their neighbourhood, 
