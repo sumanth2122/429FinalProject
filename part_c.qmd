@@ -93,3 +93,60 @@ kable(test, digits = 3, col.names = c("Lambda",
 <!--I might be getting these hypotheses mixed up with the wrong kind of test. Let's double check together on 6/5 in class. -JP-->
 
 ### Classification Analysis
+
+The four most important variables from our discriminant analysis were y1, y2, y5, and y3. We will use these four variables to construct linear classification functions and evaluate classification performance.
+
+```{r}
+top_vars <- c("Area", "BR", "Quality", "BA")
+
+lin_out <- lin.class(cincy[, top_vars], cincy$Pricerank)
+
+coefs <- as.data.frame(lin_out$coefs)
+coefs$c0 <- lin_out$c.0
+rownames(coefs) <- levels(as.factor(cincy$Pricerank))
+
+kable(coefs, digits = 3, caption = "Linear Classification Function Coefficients (Top 4 Variables)")
+
+```
+
+Each group has its own classification function of the form
+
+$$
+\text{Score}_k = \mathbf{b}_k^\top \mathbf{x} + c_{0k}
+$$
+
+where \( \mathbf{x} \) is the vector of the four selected predictors for an observation, and \( \mathbf{b}_k \) and \( c_{0k} \) are the corresponding coefficients for group \( k \).
+
+
+Classification for Observation #1
+
+```{r}
+obs1 <- as.numeric(cincy[1, top_vars])
+group_names <- rownames(coefs)
+
+scores <- apply(coefs[, -ncol(coefs)], 1, function(b) sum(b * obs1)) + coefs$c0
+predicted <- group_names[which.max(scores)]
+actual <- as.character(cincy$Pricerank[1])
+
+cat("Predicted Group:", predicted, "\n")
+cat("Actual Group:", actual, "\n")
+cat("Correct Prediction:", predicted == actual, "\n")
+
+```
+
+The classification was accurate for observation #1
+
+Performance Analysis:
+
+```{r}
+class_results <- rates(cincy[, top_vars], cincy$Pricerank, method = "l")
+
+kable(class_results$`Confusion Matrix`, caption = "Confusion Matrix")
+
+cat("ACCR:", round(class_results$`Correct Class Rate`, 3), "\n")
+cat("AER:", round(class_results$`Error Rate`, 3), "\n")
+
+```
+The linear classification functions based on Area, BR, Quality, and BA achieve an apparent correct classification rate of 77%, which indicates a reasonably strong ability to separate the three Pricerank groups. The confusion matrix shows that most misclassifications occur between similar ranking categories, which is expected.
+
+
