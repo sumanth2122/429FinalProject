@@ -81,7 +81,7 @@ The standardized coefficients are ranked above according to their variable contr
 
 H0: $\pmb{\alpha_1} = \pmb{\alpha_2} = \pmb{0}$
 
-HA: At least one $\pmb{\alpha_i} \neq \pmb{0}$ for i = 1, 2
+Ha: At least one $\pmb{\alpha_i} \neq \pmb{0}$ for i = 1, 2
 
 ```{r}
 test <- discr.sig(cincy[,-1], cincy$Pricerank)
@@ -115,8 +115,7 @@ $$
 \text{Score}_k = \mathbf{b}_k^\top \mathbf{x} + c_{0k}
 $$
 
-where \( \mathbf{x} \) is the vector of the four selected predictors for an observation, and \( \mathbf{b}_k \) and \( c_{0k} \) are the corresponding coefficients for group \( k \).
-
+where ( \mathbf{x} ) is the vector of the four selected predictors for an observation, and ( \mathbf{b}*k ) and ( c*{0k} ) are the corresponding coefficients for group ( k ).
 
 Classification for Observation #1
 
@@ -147,6 +146,5 @@ cat("ACCR:", round(class_results$`Correct Class Rate`, 3), "\n")
 cat("AER:", round(class_results$`Error Rate`, 3), "\n")
 
 ```
+
 The linear classification functions based on Area, BR, Quality, and BA achieve an apparent correct classification rate of 77%, which indicates a reasonably strong ability to separate the three Pricerank groups. The confusion matrix shows that most misclassifications occur between similar ranking categories, which is expected.
-
-
