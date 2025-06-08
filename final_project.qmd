@@ -35,9 +35,9 @@ cincy <- read_csv(here("data", "cincy.csv")) |>
 
 ## Introduction
 
-Our data set is a subset of homes in Cincinnati, Ohio, from the year 2002. It includes 552 observations and seven variables, each representing an individual house. This data set is meant to identify factors that influence and may predict the selling of homes.ß
+Our data set is a subset of homes in Cincinnati, Ohio, from the year 2002. It includes 552 observations and seven variables, each representing an individual house. These data are meant to identify factors that influence and may predict the prices of homes.
 
-Our ordinal grouping variable, "Pricerank", categorizes home based on their selling prices. Houses sold for less than \$190,000 are coded as 1, those sold between \$190,000 and \$285,000 are coded as 2, and houses sold for more than \$285,000 are coded as 3.
+Our ordinal grouping variable, "Pricerank", categorizes homes based on their selling prices. Houses sold for less than \$190,000 are coded as 1, those sold between \$190,000 and \$285,000 are coded as 2, and houses sold for more than \$285,000 are coded as 3.
 
 The remaining six variables are explanatory:
 
