@@ -1,6 +1,8 @@
 ---
 title: "Final Project | STAT 419"
+subtitle: "Group 4"
 author: "Abby Drongpa, Alex Sullivan, Chris Liu, Jett Palmer, Sumanth Thokala"
+date: 06-08-2025
 format: pdf
 editor: visual
 execute:
@@ -8,6 +10,8 @@ execute:
   warning: false
   message: false
 ---
+
+{{< pagebreak >}}
 
 ```{r packages}
 
