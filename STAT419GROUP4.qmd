@@ -69,7 +69,7 @@ round(sd(cincy$Area), 3) |>
   kable_styling(latex_options = c(), position = "left")
 ```
 
-The distribution is right skewed with a mean area of 2261 ft^2^ and a median of 2061 ft^2^. The standard deviation is 711.06 ft^2^.
+The distribution of house sizes is right skewed with a mean area of 2261 ft^2^ and a median of 2061 ft^2^. The standard deviation is 711.06 ft^2^.
 
 ### Car Storage Histogram
 
@@ -78,7 +78,7 @@ cincy |> ggplot(aes(x=Garage)) + geom_histogram() +
   labs(x="Number of Cars", y = "Count", title="Size of Garage")
 ```
 
-The mean number of cars able to be stored in the garage(s) is 2.1 with a median of 2 cars and a standard deviation of 0.65. The distribution reveals several high and low outliers at 0, 4 , 5, 6, and 7 cars. In other words, the distribution is highly concentrated at 2 car garages.
+On average, garages accommodate a mean of 2.1 cars and a median of 2 cars, with a standard deviation of 0.65. The distribution reveals several high and low outliers at 0, 4 , 5, 6, and 7 cars. In other words, the distribution is highly concentrated at 2 car garages.
 
 ```{r}
 summary(cincy$Garage)
@@ -110,7 +110,7 @@ cincy |> ggplot(aes(x=BA)) + geom_histogram() +
   labs(x="Number of Bathrooms", y = "Count", title="Number of Bathrooms")
 ```
 
-The distribution of number of bathrooms is skewed the right with a mean of 2.64 and median of 3 bedrooms. The standard deviation is 1.06.
+The distribution of number of bathrooms is right skewed with a mean of 2.64 and median of 3 bedrooms. The standard deviation is 1.06.
 
 ```{r}
 summary(cincy$BA)
@@ -199,7 +199,21 @@ kable(test, digits = 3, col.names = c("Lambda",
                                       "P-Values"))
 ```
 
-<!--I might be getting these hypotheses mixed up with the wrong kind of test. Let's double check together on 6/5 in class. -JP-->
+Since both p-values are less than 0.025, we have sufficient evidence to reject the null hypothesis and conclude that both discriminant functions are significant.
+
+H0: Variable $y_i$ contributes to group separation after adjusting for the remaining variables.
+
+Ha: Variable $y_i$ does not contribute to group separation after adjusting for the remaining variables.
+
+For i = Area, BR, BA, Garage, Quality, Age
+
+```{r}
+kable(partial.F(cincy[, -1], cincy$Pricerank))
+```
+
+Since the p-values for Area, Quality, BR, and BA are \< 0.0083, at the 5% significance level, we reject the null hypothesis and conclude that these variables significantly contribute to group separation, adjusting for the remaining variables.
+
+Age and Garage, however, do not significantly contribute to group separation, adjusting for the other variables (p = 0.0085, p = 0.2925).
 
 ```{r}
 cincy$Pricerank <- as.factor(cincy$Pricerank)
@@ -267,13 +281,13 @@ The linear classification functions based on Area, BR, Quality, and BA achieve a
 
 ## Summary
 
-As stated in the introduction, this project analysed factors that affect the selling price of homes in 2002 in Cincinnati, Ohio, with each observation in our dataset representing a single house. The homes are grouped into three categories of the the Pricerank variable, with homes sold for less than \$190,000 = "1", homes sold for between \$190,000 and \$285,000 = 2, and homes sold for more than \$285,000 = 3, with six explanatory variables to help with classifying a home by Pricerank.
+As stated in the introduction, this project analysed factors that affect the selling price of homes in 2002 in Cincinnati, Ohio, with each observation in our data set representing a single house. The homes are grouped into three categories of the the Pricerank variable, with homes sold for less than \$190,000 = "1", homes sold for between \$190,000 and \$285,000 = 2, and homes sold for more than \$285,000 = 3, with six explanatory variables to help with classifying a home by Pricerank.
 
 Before performing discriminant analysis, we checked for any strong correlations (i.e., $r \ge \pm 0.8$) between the explanatory variables. No pairs of explanatory variables yielded strong correlations, leading us to an analysis with two discriminant functions. The standardized discriminant function suggests that area, number of bedrooms, number of bathrooms, and overall quality rating contribute the most to separating the groups in the second linear discriminant function.
 
-Perfoming a classification for Pricerank based on the four previously mentioned variables yields an apparent correct classification rate of 0.77 and an apparent error rate of 0.23. These values indicate a reasonably strong ability to classify house Pricerank by area, number of bedrooms, number of bathrooms, and overall quality rating. Most misclassifications occured between similar categories and were narrowly mistaken.
+Performing a classification for Pricerank based on the four previously mentioned variables yields an apparent correct classification rate of 0.77 and an apparent error rate of 0.23. These values indicate a reasonably strong ability to classify house Pricerank by area, number of bedrooms, number of bathrooms, and overall quality rating. Most misclassifications occurred between similar categories and were narrowly mistaken.
 
-Generally speaking, our team did not encounter highly suprising results when grouping houses on Pricerank. However, one variable our team felt would be useful for separation would be location score because homes vary by neighborhood. This location score would be an integer that takes into consideration school district quality, crime rate, proximity to downtown, etc. Homes with similar features can vary significantly in price when taking their neighborhood into consideration.
+Generally speaking, our team did not encounter highly surprising results when grouping houses on Pricerank. However, one variable our team felt would be useful for separation would be location score because homes vary by neighborhood. This location score would be an integer that takes into consideration school district quality, crime rate, proximity to downtown, etc. Homes with similar features can vary significantly in price when taking their neighborhood into consideration.
 
 ## R Code
 
