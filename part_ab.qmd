@@ -4,12 +4,6 @@ format: html
 editor: visual
 ---
 
----
-title: "part_ab"
-format: html
-editor: visual
----
-
 ```{r}
 cincy <- read.csv("/Users/alexsullivan/Documents/stat419/cincy_419.csv")
 library(ggplot2)
@@ -18,9 +12,9 @@ library(dplyr)
 
 # Section A
 
-Our data set is a subset of homes in Cincinnati, Ohio from 2002 that examined the houses in an effort to determine the factors that affect the selling price. It contains 522 observations and 7 variables. Each observation is corresponds to a house.
+Our data set is a subset of homes in Cincinnati, Ohio from 2002 that examined the houses in an effort to determine the factors that affect the selling price. It contains 522 observations and 7 variables. Each observation corresponds to a house.
 
-One of these variables, “PRICERANK”, is our ordinal grouping variable that classifies homes based on their selling price. Homes sold for less than 190k were labeled as "1", homes sold for between 190k and 285k were labelled with 2, and homes sold for more than 285k were labelled as 3. The other six variables are explanatory. "Area" is measured in square feet and communicates the area of the house. "BR" indicates the number of bedrooms and "BA" indicates the number of bathrooms. "Garage" denotes the number of cars a house can hold. "Quality" is an index measuring the quality of construction where 1 conveys high quality, 2 for medium quality, and 3 for low quality. Finally, "Age" represents the age of the house in 2002.
+One of these variables, “Pricerank”, is our ordinal grouping variable that classifies homes based on their selling price. Homes sold for less than 190k were labeled as "1", homes sold for between 190k and 285k were labelled with 2, and homes sold for more than 285k were labelled as 3. The other six variables are explanatory. "Area" is measured in square feet and represents the geometric area of the house. "BR" indicates the number of bedrooms and "BA" indicates the number of bathrooms. "Garage" denotes the number of cars a house can hold. "Quality" is an index measuring the quality of construction where 1 conveys high quality, 2 for medium quality, and 3 for low quality. Finally, "Age" represents the age of the house in 2002.
 
 # Section B
 
