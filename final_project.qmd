@@ -20,8 +20,10 @@ library(here)
 library(janitor)
 library(knitr)
 library(ggplot2)
+library(knitr)
 
 source(here("all_custom_functions.R"))
+theme_set(theme_minimal())
 ```
 
 ```{r data}
@@ -51,6 +53,74 @@ The remaining six variables are explanatory:
 -   Age: The age of the house as of 2002.
 
 ## Graphs and Summary Statistics
+
+### House Area Histogram
+
+```{r}
+cincy |> ggplot(aes(x=Area)) + geom_histogram() + 
+  labs(x="Area (Squared Feet)", y = "Count", title="House Area Distribution")
+```
+
+```{r}
+summary(cincy$Area)
+kable(sd(cincy$Area), col.names = "St Dev")
+```
+
+The mean area of the house is 2261 ft^2^ and the median is 2061 ft^2^. The standard deviation is 711.06 ft^2^. The histogram in Figure 1 is skewed to the right and centered at around 2000 ft^2^.
+
+### Car Storage Histogram (JETT LEFT OFF HERE)
+
+```{r}
+cincy |> ggplot(aes(x=Garage)) + geom_histogram() + 
+  labs(x="Number of Cars", y = "Count", title="Distribution of number of cars able to be in Garage")
+```
+
+The mean number of cars able to be stored in the garage is 2.1 and the median number of cars is 2. The standard deviation is 0.65. This reflects the histogram as the majority of homes store 1-3 cars. There are outliers at 0 cars, 4 cars, 5 cars, 6 cars, and 7 cars. Figure 3 is fairly normal.
+
+```{r}
+summary(cincy$Garage)
+sd(cincy$Garage)
+```
+
+### Bedroom Histogram
+
+```{r}
+cincy |> ggplot(aes(x=BR)) + geom_histogram() + 
+  labs(x="Number of Bedrooms", y = "Count", title="Number of Bedrooms Distribution")
+```
+
+The histogram of the number of bedrooms in each house is pretty normally distributed. It is centered around 3 and this reflects the median of 3 and the mean of 3.47. The standard deviation is 1.01.
+
+```{r}
+summary(cincy$BR)
+sd(cincy$BR)
+```
+
+### Bathrooms Histogram
+
+```{r}
+cincy |> ggplot(aes(x=BA)) + geom_histogram() + 
+  labs(x="Number of Bathrooms", y = "Count", title="Number of Bathrooms Distribution")
+```
+
+The histogram in Figure 5 is slightly skewed to the right. The mean number of bathrooms is 2.64 and the median number of bathrooms is 3. The standard deviation is 1.06.
+
+```{r}
+summary(cincy$BA)
+sd(cincy$BA)
+```
+
+### Construction Quality Bar Chart
+
+```{r}
+cincy |> ggplot(aes(x=Quality)) + geom_histogram() + 
+  labs(x="Quality of Construction", y = "Count", title="Construction Quality Distribution")
+```
+
+```{r}
+summary(cincy$Quality)
+sd(cincy$Quality)
+```
 
 ## Discriminant and Classification Analysis
 
