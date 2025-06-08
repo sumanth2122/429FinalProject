@@ -58,56 +58,56 @@ The remaining six variables are explanatory:
 
 ```{r}
 cincy |> ggplot(aes(x=Area)) + geom_histogram() + 
-  labs(x="Area (Squared Feet)", y = "Count", title="House Area Distribution")
+  labs(x="Area (Square Feet)", y = "Count", title="House Size")
 ```
 
 ```{r}
 summary(cincy$Area)
-kable(sd(cincy$Area), col.names = "St Dev")
+kable(round(sd(cincy$Area), 3), col.names = "St Dev")
 ```
 
-The mean area of the house is 2261 ft^2^ and the median is 2061 ft^2^. The standard deviation is 711.06 ft^2^. The histogram in Figure 1 is skewed to the right and centered at around 2000 ft^2^.
+The distribution is right skewed with a mean area of 2261 ft^2^ and a median of 2061 ft^2^. The standard deviation is 711.06 ft^2^.
 
-### Car Storage Histogram (JETT LEFT OFF HERE)
+### Car Storage Histogram
 
 ```{r}
 cincy |> ggplot(aes(x=Garage)) + geom_histogram() + 
-  labs(x="Number of Cars", y = "Count", title="Distribution of number of cars able to be in Garage")
+  labs(x="Number of Cars", y = "Count", title="Size of Garage")
 ```
 
-The mean number of cars able to be stored in the garage is 2.1 and the median number of cars is 2. The standard deviation is 0.65. This reflects the histogram as the majority of homes store 1-3 cars. There are outliers at 0 cars, 4 cars, 5 cars, 6 cars, and 7 cars. Figure 3 is fairly normal.
+The mean number of cars able to be stored in the garage(s) is 2.1 with a median of 2 cars and a standard deviation of 0.65. The distribution reveals several high and low outliers at 0, 4 , 5, 6, and 7 cars. In other words, the distribution is highly concentrated at 2 car garages.
 
 ```{r}
 summary(cincy$Garage)
-sd(cincy$Garage)
+kable(round(sd(cincy$Garage), 3), col.names = "St Dev")
 ```
 
 ### Bedroom Histogram
 
 ```{r}
 cincy |> ggplot(aes(x=BR)) + geom_histogram() + 
-  labs(x="Number of Bedrooms", y = "Count", title="Number of Bedrooms Distribution")
+  labs(x="Number of Bedrooms", y = "Count", title="Number of Bedrooms")
 ```
 
-The histogram of the number of bedrooms in each house is pretty normally distributed. It is centered around 3 and this reflects the median of 3 and the mean of 3.47. The standard deviation is 1.01.
+The distribution of number of bedrooms in each house is roughly normal, with a mean of 3.47 and median of 3 bedrooms. The standard deviation is 1.01 bedrooms.
 
 ```{r}
 summary(cincy$BR)
-sd(cincy$BR)
+kable(round(sd(cincy$BR), 3), col.names = "St Dev")
 ```
 
 ### Bathrooms Histogram
 
 ```{r}
 cincy |> ggplot(aes(x=BA)) + geom_histogram() + 
-  labs(x="Number of Bathrooms", y = "Count", title="Number of Bathrooms Distribution")
+  labs(x="Number of Bathrooms", y = "Count", title="Number of Bathrooms")
 ```
 
-The histogram in Figure 5 is slightly skewed to the right. The mean number of bathrooms is 2.64 and the median number of bathrooms is 3. The standard deviation is 1.06.
+The distribution of number of bathrooms is skewed the right with a mean of 2.64 and median of 3 bedrooms. The standard deviation is 1.06.
 
 ```{r}
 summary(cincy$BA)
-sd(cincy$BA)
+kable(round(sd(cincy$BA), 3), col.names = "St Dev")
 ```
 
 ### Construction Quality Bar Chart
@@ -119,8 +119,10 @@ cincy |> ggplot(aes(x=Quality)) + geom_histogram() +
 
 ```{r}
 summary(cincy$Quality)
-sd(cincy$Quality)
+kable(round(sd(cincy$Quality), 3), col.names = "St Dev")
 ```
+
+Most houses were given a quality rating of 2 (medium), followed by 3 (low quality), and 1 (high quality).
 
 ## Discriminant and Classification Analysis
 
