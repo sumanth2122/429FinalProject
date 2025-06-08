@@ -1,6 +1,6 @@
 ---
 title: "Final Project | STAT 419"
-author: "Sumanth, Abby, Jett, Alex, Chris"
+author: "Abby Drongpa, Alex Sullivan, Chris Liu, Jett Palmer, Sumanth Thokala"
 format: pdf
 editor: visual
 execute:
