@@ -5,7 +5,7 @@ format: html
 
 # R Code
 
-## Section A
+### Section A
 
 Set up.
 ```{r, echo=TRUE, results='hide', fig.show='hide', message=FALSE}
@@ -25,7 +25,7 @@ cincy <- read_csv(here("data", "cincy.csv")) |>
   )
 ```
 
-## Section B
+### Section B
 
 House area histogram.
 ```{r, echo=TRUE, results='hide', fig.show='hide', message=FALSE, warning=FALSE}
@@ -36,7 +36,9 @@ cincy |> ggplot(aes(x=Area)) + geom_histogram() +
 House area summary statistics.
 ```{r, echo=TRUE, results='hide'}
 summary(cincy$Area)
-sd(cincy$Area)
+round(sd(cincy$Area), 3) |>
+  kable(col.names = "St Dev", format = "latex", booktabs = FALSE) |>
+  kable_styling(latex_options = c(), position = "left")
 ```
 
 Car storage histogram.
@@ -48,7 +50,9 @@ cincy |> ggplot(aes(x=Garage)) + geom_histogram() +
 Car storage summary statistics.
 ```{r, echo=TRUE, results='hide'}
 summary(cincy$Garage)
-sd(cincy$Garage)
+round(sd(cincy$Garage), 3) |>
+  kable(col.names = "St Dev", format = "latex", booktabs = FALSE) |>
+  kable_styling(latex_options = c(), position = "left")
 ```
 
 Number of bedrooms histogram.
@@ -60,7 +64,9 @@ cincy |> ggplot(aes(x=BR)) + geom_histogram() +
 Number of bedrooms summary statistics.
 ```{r, echo=TRUE, results='hide'}
 summary(cincy$BR)
-sd(cincy$BR)
+round(sd(cincy$BR), 3) |>
+  kable(col.names = "St Dev", format = "latex", booktabs = FALSE) |>
+  kable_styling(latex_options = c(), position = "left")
 ```
 
 Number of bathrooms histogram.
@@ -72,7 +78,9 @@ cincy |> ggplot(aes(x=BA)) + geom_histogram() +
 Number of bathrooms summary statistics.
 ```{r, echo=TRUE, results='hide'}
 summary(cincy$BA)
-sd(cincy$BA)
+round(sd(cincy$BA), 3) |>
+  kable(col.names = "St Dev", format = "latex", booktabs = FALSE) |>
+  kable_styling(latex_options = c(), position = "left")
 ```
 
 Construction quality bar chart.
@@ -84,8 +92,12 @@ cincy |> ggplot(aes(x=Quality)) + geom_histogram() +
 Construction quality summary statistics.
 ```{r, echo=TRUE, results='hide'}
 summary(cincy$Quality)
-sd(cincy$Quality)
+round(sd(cincy$Quality), 3) |>
+  kable(col.names = "St Dev", format = "latex", booktabs = FALSE) |>
+  kable_styling(latex_options = c(), position = "left")
 ```
+
+### Section C
 
 Correlation coefficients between all quantitative explanatory variables.
 ```{r, echo=TRUE, results='hide'}
